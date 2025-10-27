@@ -6,3 +6,29 @@
  <artifactId>Projeto de Programação_N04_Grupo08</artifactId>
  <version>0.1.0-SNAPSHOT</version>
 </project>
+
+        <!-- Spring Boot starter -->
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+
+        <!-- Driver SQLite  -->
+<dependency>
+<groupId>org.xerial</groupId>
+<artifactId>sqlite-jdbc</artifactId>
+<version>3.41.2.1</version>
+</dependency>
+
+        <!-- Testes -->
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-test</artifactId>
+<scope>test</scope>
+</dependency>
+
