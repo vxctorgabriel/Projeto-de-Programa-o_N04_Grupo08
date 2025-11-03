@@ -1,42 +1,45 @@
-package br.projeton04.avaliacao.controller;
+package com.projeton04.controller;
 
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import br.projeton04.avaliacao.service.FeedbackService;
-import br.projeton04.avaliacao.dto.FeedbackRequest;
-import br.projeton04.avaliacao.dto.FeedbackResponse;
-import br.projeton04.avaliacao.dto.ReportResponse;
 import java.util.List;
+import com.projeton04.model.Feedback;
+import com.projeton04.service.FeedbackService;
 
 @RestController
-@RequestMapping("/api/feedbacks")
+@RequestMapping("/feedbacks")
 public class FeedbackController {
 
     @Autowired
-    private FeedbackService service;
+    private FeedbackService feedbackService;
 
-    @PostMapping
-    public ResponseEntity<FeedbackResponse> criar(@RequestBody FeedbackRequest req){
-        FeedbackResponse resp = service.criarFeedback(req);
-        return ResponseEntity.status(201).body(resp);
+    @GetMapping
+    public List<Feedback> listarTodos() {
+        return feedbackService.listarTodos();
+    }
+
+    @GetMapping("/{id}")
+    public Feedback buscarPorId(@PathVariable Long id) {
+        return feedbackService.buscarPorId(id);
     }
 
     @GetMapping("/evento/{eventoId}")
-    public ResponseEntity<List<FeedbackResponse>> listar(@PathVariable String eventoId, @RequestParam(required=false) String tipoParticipante){
-        List<FeedbackResponse> list = service.listarFeedbacks(eventoId, tipoParticipante);
-        return ResponseEntity.ok(list);
+    public List<Feedback> buscarPorEvento(@PathVariable Long eventoId) {
+        return feedbackService.buscarPorEvento(eventoId);
     }
 
-    @PostMapping("/{id}/denunciar")
-    public ResponseEntity<Void> denunciar(@PathVariable String id){
-        service.denunciar(id);
-        return ResponseEntity.ok().build();
+    @GetMapping("/participant/{participantId}")
+    public List<Feedback> buscarPorParticipant(@PathVariable Long participantId) {
+        return feedbackService.buscarPorParticipant(participantId);
     }
 
-    @GetMapping("/evento/{eventoId}/relatorio")
-    public ResponseEntity<ReportResponse> relatorio(@PathVariable String eventoId){
-        ReportResponse r = service.relatorioSatisfacao(eventoId);
-        return ResponseEntity.ok(r);
+    @PostMapping
+    public Feedback criar(@RequestBody Feedback feedback) {
+        return feedbackService.salvar(feedback);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id) {
+        feedbackService.deletar(id);
     }
 }
