@@ -1,0 +1,25 @@
+RELATÓRIO TÉCNICO - Sistema de Gestão de
+Eventos
+Módulo: Avaliação e Feedback
+O módulo de Avaliação e Feedback foi desenvolvido para permitir que os participantes expressem
+opiniões sobre os eventos cadastrados, promovendo melhorias contínuas e maior transparência na
+gestão municipal de eventos.
+1. Tecnologias Utilizadas
+• Linguagem: Java 17 • Framework: Spring Boot • Banco de Dados: SQLite • Interface: JavaFX (ou
+Swing) • ORM: JPA/Hibernate
+2. Estrutura do Módulo
+O módulo segue o padrão MVC (Model-View-Controller), organizado nas seguintes camadas: •
+Model: classes Evento, Participante e Feedback • Repository: interfaces para persistência com
+Spring Data JPA • Service: regras de negócio (média, bloqueio de múltiplas avaliações) •
+Controller: endpoints REST e controle da interface
+3. Integração com o Sistema
+O módulo integra-se ao de Cadastro de Eventos e Participantes via relacionamentos de chave
+estrangeira (evento_id, autor_id). Os dados de feedback alimentam relatórios consolidados no
+módulo de Relatórios e Estatísticas.
+4. Testes Realizados
+Foram testadas as seguintes funcionalidades: • Registro de feedback válido • Bloqueio de múltiplos
+feedbacks por evento • Cálculo da média de avaliações • Consulta de feedbacks por evento •
+Validação de integridade referencial
+5. Conclusão
+O módulo atende aos requisitos propostos, garantindo integridade das informações e uma interface
+intuitiva. Está pronto para integração final e apresentação
